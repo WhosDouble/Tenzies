@@ -64,7 +64,7 @@ export default function App() {
   ));
 
   return (
-    <main>
+    <main className="main-container">
       {/* Render Confetti component if `tenzies` is true*/}
       <h1 className="title">{tenzies ? "Congrats Ari!" : "Tenzies"}</h1>
       <p className="instructions">
