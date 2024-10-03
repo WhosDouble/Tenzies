@@ -5,10 +5,11 @@ module.exports = {
   entry: "./index.js",
   output: {
     filename: "index.pack.js",
-    path: path.resolve(__dirname, "."), // Output directly to the root
+    path: path.resolve(__dirname, "dist"),
+    clean: true, // Clear the output directory before each build
   },
   resolve: {
-    extensions: [".js", ".json"],
+    extensions: [".js", "jsx", ".json"],
   },
   module: {
     rules: [
