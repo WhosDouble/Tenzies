@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/, // Updated to include both .js and .jsx
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -25,6 +25,7 @@ module.exports = {
       },
     ],
   },
+
   devServer: {
     static: {
       directory: path.join(__dirname, "."), // Serve files from the root
