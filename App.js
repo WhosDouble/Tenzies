@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 export default function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
-
+  //checking if the user has won the game based off if every die is held and the same value
   useEffect(() => {
     const allHeld = dice.every((die) => die.isHeld);
     const firstValue = dice[0].value;
@@ -17,7 +17,7 @@ export default function App() {
       console.log("You won!");
     }
   }, [dice]);
-
+  //another helper function to generate a array of random numbers for the die with a unique id
   function generateNewDie() {
     return {
       value: Math.ceil(Math.random() * 6),
@@ -25,7 +25,7 @@ export default function App() {
       id: nanoid(),
     };
   }
-
+  //generates a new array of numbers for the dice
   function allNewDice() {
     const newDice = [];
     for (let i = 0; i < 10; i++) {
@@ -34,7 +34,13 @@ export default function App() {
     return newDice;
   }
 
+  //useEffect() to track how many rolls the user has made
+  const [numberOfRolls, setNumberOfRolls] = useState(0);
+
   function rollDice() {
+    //adding to the roll count each time the user rolls
+    setNumberOfRolls((prevState) => prevState + 1);
+
     setDice((oldDice) => {
       //checking if the game is won
       if (tenzies) {
@@ -46,6 +52,8 @@ export default function App() {
     });
   }
 
+  console.log(numberOfRolls);
+  //A function to not generate new dice for dice that have the isHeld property set to true
   function holdDice(id) {
     setDice((oldDice) =>
       oldDice.map((die) => {
@@ -53,7 +61,7 @@ export default function App() {
       })
     );
   }
-
+  //rendering the dice components
   const diceElements = dice.map((die) => (
     <Die
       key={die.id}
@@ -66,10 +74,12 @@ export default function App() {
   return (
     <main className="main-container">
       {/* Render Confetti component if `tenzies` is true*/}
-      <h1 className="title">{tenzies ? "Congrats Ari!" : "Tenzies"}</h1>
+      <h1 className="title">{tenzies ? "Congrats You won!" : "Tenzies"}</h1>
       <p className="instructions">
-        Roll until all dice are the same. Click each die to freeze it at its
-        current value between rolls.
+        {tenzies
+          ? `congrats you rolled, ${numberOfRolls} times`
+          : `Roll until all dice are the same. Click each die to freeze it at its
+        current value between rolls.`}
       </p>
       <div className="dice-container">{diceElements}</div>
       {tenzies === true && <Confetti />}

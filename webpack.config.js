@@ -30,12 +30,13 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "."), // Serve files from the root
     },
-    historyApiFallback: true, // Redirect 404s to the index.html
+    historyApiFallback: true, // Redirect 404s to index.html
     port: 8080,
-    open: true, // Open the browser after server start
+    open: true, // Automatically open the browser after server starts
     headers: {
       "Content-Security-Policy":
         "script-src 'self' 'unsafe-inline' 'unsafe-eval';", // Allow inline scripts and eval
     },
+    hot: true, // Enable hot module replacement
   },
 };
