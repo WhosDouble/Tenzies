@@ -1,5 +1,6 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App"
+import React from "react"; // Import React
+import ReactDOM from "react-dom/client"; // Import from 'react-dom/client' for React 18
+import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"))
+const root = ReactDOM.createRoot(document.getElementById("root")); // Create a root
+root.render(<App />); // Render your App component
