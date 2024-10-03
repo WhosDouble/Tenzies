@@ -96,21 +96,23 @@ export default function App() {
   ));
 
   return (
-    <main className="main-container">
-      {/* Render Confetti component if `tenzies` is true*/}
-      <h1 className="title">{tenzies ? "Congrats You won!" : "Tenzies"}</h1>
-      <p className="instructions">
-        {tenzies
-          ? `congrats you rolled, ${numberOfRolls} times`
-          : `Roll until all dice are the same. Click each die to freeze it at its
+    <div className="fatherOfTime">
+      <main className="main-container">
+        {/* Render Confetti component if `tenzies` is true*/}
+        <h1 className="title">{tenzies ? "Congrats You won!" : "Tenzies"}</h1>
+        <p className="instructions">
+          {tenzies
+            ? `congrats you rolled, ${numberOfRolls} times`
+            : `Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.`}
-      </p>
-      {tenzies && <p>your time {timer} seconds</p>}
-      <div className="dice-container">{diceElements}</div>
-      {tenzies === true && <Confetti />}
-      <button className="roll-dice" onClick={rollDice}>
-        {tenzies ? "Restart" : "Roll"}
-      </button>
-    </main>
+        </p>
+        {tenzies && <p>your time {timer} seconds</p>}
+        <div className="dice-container">{diceElements}</div>
+        {tenzies === true && <Confetti />}
+        <button className="roll-dice" onClick={rollDice}>
+          {tenzies ? "Restart" : "Roll"}
+        </button>
+      </main>
+    </div>
   );
 }
